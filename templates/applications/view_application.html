@@ -1,9 +1,0 @@
-{% extends "applications/base.html" %}
-{% block header_bar %}
-  <h1>Application for {{ app_doc.rental.unit }}</h1>{% endblock %}
-{% block main %}
-    <h3>You've submitted this application for {{ app_doc.rental.unit }}.</h3>
-    <h3>Its current status is: {{app_doc.get_status_display}}.</h3>
-    <p><a href="?format=pdf">Printable Form</a></p>
-    {% include "applications/application_fields.html" %}
-{% endblock %}
