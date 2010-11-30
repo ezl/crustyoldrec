@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block position %}class="active dashboard-active"{% endblock %}
+{% block header_bar %}
+  <h1>Position Exception</h1>
+{% endblock %}
+{% block main %}
+  <div class="span-24 last">
+    <div>
+      Exceptions
+      {% if position_exceptions %}
+      <table>
+        <tbody>
+        <tr>
+          <th>Instrument</th>
+          <th>Options City</th>
+          <th>New Edge</th>
+          <th>Options City - New Edge</th>
+        </tr>
+        {% for position in position_exceptions %}
+        <tr>
+          <td>{{ position.0 }}</td>
+          <td>{{ position.1 }}</td>
+          <td>{{ position.2 }}</td>
+          <td>{{ position.3 }}</td>
+        </tr>
+        {% endfor%}
+        </tbody>
+      </table>
+      {% endif%}
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,11 @@
+{% load filename %}
+
+<div id="applicationdisplay">
+  {% for field,value in app_doc_dict.items %}
+    {% if "attachment" in field and value %}
+      <div class="row1"><div class="span-6 colorcol">{{ field|title }}</div><div class="span-12 last"><a href="{{ value.url }}" target="_blank">{{ value|filename }}</a></div></div>
+    {% else %}
+      <div class="row1"><div class="span-6 colorcol">{{ field|title }}</div><div class="span-12 last">{{ value }}</div></div>
+    {% endif %}
+  {% endfor %}
+</div>

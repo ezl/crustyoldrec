@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block header_bar %}
+    <h1> Welcome to Leasely.</h1>
+{% endblock %}
+{% block main %}
+    <div class="span-24 last">
+        <h1> We're making it easy for brokers and tenants to swap rental application forms online.</h1>
+    </div>
+    <div class="span-8 colborder">
+        <h2>Brokers</h2>
+        <h3>Forget the hassle of paper applications, fax, hand delivery, and photocopies.  Post your rental application form and review the applications that come in, all online.</h3>
+        <h3><a href="{% url login %}">Login</a> or <a href="{% url accounts_register_broker%}">register</a> to get started!</h3>
+        <!-- <form action="{% url mailer_add_address %}" method="post">{% csrf_token %}
+          <div class="span-4">
+            {{ mailer_form.as_p }}
+          </div>
+          <div class="span-4 last">
+            <br />
+            <p><input type="submit" value="request" /></p>
+          </div>
+          <div class="clear"></div>
+          <p class="small">(We won't use your email address for anything else)</p>
+        </form> -->
+    </div>
+    <div class="span-8 last">
+        <h2>Tenants</h2>
+        <h3>It's easy to apply for more than one apartment.  Just fill out one form and Leasely does the rest.</h3>
+        <h3><a href="{% url login %}">Login or register</a> to get started!</h3>
+    </div>
+{% endblock %}

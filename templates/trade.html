@@ -1,0 +1,149 @@
+{% extends "base.html" %}
+{% block trade %}class="active dashboard-active"{% endblock %}
+{% block header_bar %}
+  <h1>Trade Exception</h1>
+{% endblock %}
+{% block main %}
+  <div class="span-24 last">
+    <div>
+      Exceptions
+      {% if trade_exceptions %}
+      <table>
+        <tr>
+          <th>Instrument</th>
+          <th>Options City</th>
+          <th>New Edge</th>
+        </tr>
+        {% for trade_exception in trade_exceptions %}
+        <tr>
+          <td><input type="checkbox">{{ trade_exception.0 }}</td>
+          <td>
+          {% if trade_exception.1|length > 5 or trade_exception.2|length > 5 %}
+            <p class="summary">
+              Bought: {{ trade_exception.3.0 }} @ {{ trade_exception.3.1 }} | 
+              Sold: {{ trade_exception.3.2 }} @ {{ trade_exception.3.3 }}
+            </p>
+          {% endif %}
+            {% for item in trade_exception.1 %}
+              <p class="trade">{{ item.1 }} @ {{ item.2 }}</p>
+            {% endfor%}
+          </td>
+          <td>
+          {% if trade_exception.1|length > 5 or trade_exception.2|length > 5 %}
+            <p class="summary">
+              Bought: {{ trade_exception.4.0 }} @ {{ trade_exception.4.1 }} | 
+              Sold: {{ trade_exception.4.2 }} @ {{ trade_exception.4.3 }}
+            </p>
+          {% endif %}
+            {% for item in trade_exception.2 %}
+              <p class="trade">{{ item.1 }} @ {{ item.2 }}</p>
+            {% endfor%}
+          </td>
+        </tr>
+        {% endfor %}
+      </table>
+      {% endif %}
+    </div>
+
+    <div>
+      Matched spread legs
+      {% if matched_legs %}
+      <table>
+        <tr>
+          <th>Instrument</th>
+          <th>Options City</th>
+          <th>New Edge</th>
+        </tr>
+        {% for matched_leg in matched_legs %}
+        <tr>
+          <td>{{ matched_leg.0 }}</td>
+          <td>
+          {% if matched_leg.1|length > 5 %}
+            <p class="summary">
+              Bought: {{ matched_leg.3.0 }} @ {{ matched_leg.3.1 }} | 
+              Sold: {{ matched_leg.3.2 }} @ {{ matched_leg.3.3 }}
+            </p>
+          {% endif %}
+            {% for item in matched_leg.1 %}
+              <p class="trade">{{ item.1 }}@{{ item.2 }}</p>
+            {% endfor%}
+          </td>
+          <td>
+          {% if matched_leg.1|length > 5 %}
+            <p class="summary">
+              Bought: {{ matched_leg.4.0 }} @ {{ matched_leg.4.1 }} | 
+              Sold: {{ matched_leg.4.2 }} @ {{ matched_leg.4.3 }}
+            </p>
+          {% endif %}
+            {% for item in matched_leg.2 %}
+              <p class="trade">{{ item.1 }} @ {{ item.2 }}</p>
+            {% endfor%}
+          </td>
+        </tr>
+        {% endfor %}
+      </table>
+      {% endif %}
+    </div>
+
+    <div>
+      Matched but split quantities
+      {% if matched_split_qty %}
+      <table>
+        <tr>
+          <th>Instrument</th>
+          <th>Options City</th>
+          <th>New Edge</th>
+        </tr>
+        {% for matched_leg in matched_split_qty %}
+        <tr>
+          <td>{{ matched_leg.0 }}</td>
+          <td>
+          {% if matched_leg.1|length > 5 %}
+            <p class="summary">
+              Bought: {{ matched_leg.3.0 }} @ {{ matched_leg.3.1 }} | 
+              Sold: {{ matched_leg.3.2 }} @ {{ matched_leg.3.3 }}
+            </p>
+          {% endif %}
+            {% for item in matched_leg.1 %}
+              <p class="trade">{{ item.1 }} @ {{ item.2 }}</p>
+            {% endfor%}
+          </td>
+          <td>
+          {% if matched_leg.1|length > 5 %}
+            <p class="summary">
+              Bought: {{ matched_leg.4.0 }} @ {{ matched_leg.4.1 }} | 
+              Sold: {{ matched_leg.4.2 }} @ {{ matched_leg.4.3 }}
+            </p>
+          {% endif %}
+            {% for item in matched_leg.2 %}
+              <p class="trade">{{ item.1 }} @ {{ item.2 }}</p>
+            {% endfor%}
+          </td>
+        </tr>
+        {% endfor %}
+      </table>
+      {% endif %}
+    </div>
+
+    <div>
+      Exact matches: {{ exact_matches|length }}
+      {% if exact_matches %}
+      <table>
+        <tr>
+          <th>Instrument</th>
+          <th>Trade</th>
+        </tr>
+        {% for exact_match in exact_matches %}
+        <tr>
+          <td>{{ exact_match.0.0 }}</td>
+          <td>{{ exact_match.0.1 }} @ {{ exact_match.0.2 }}</td>
+        </tr>
+        {% endfor %}
+
+      </table>
+      {% endif %}
+    </div>
+  </div>
+
+
+{% endblock %}

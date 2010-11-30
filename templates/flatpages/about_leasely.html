@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load adminfiles_tags %}
+{% block title %}
+    About Leasely - {{ block.super }}
+{% endblock %}
+{% block header_bar %}
+    <h1>{{ flatpage.title }}</h1>
+{% endblock %}
+
+{% block main %}
+    <h2>We're taking the headache out of apartment rental applications.</h2>
+    <h2>We'd love to hear from you, so <a href="http://leasely.uservoice.com">leave us feedback</a> or <a href="mailto:hi@leasely.com">send us an email</a>.</h2>
+    <h2>You should <a href="http://blog.leasely.com">visit our blog</a> and <a href="http://twitter.com/leasely">follow @Leasely on Twitter</a></h2>
+    <hr>
+    <h2>The Team</h2>
+    <div class="span-7 append-1">
+      <h3>Eric Liu</h3>
+      <p>
+        Eric owns and manages several properties in Chicago. Leasely began as a
+        way to make Eric's life easier. Previously, Eric worked in finance as a
+        trader. He studied chemistry and liberal arts at the University of
+        Texas.
+      </p>
+    </div>
+    <div class="span-7 append-1">
+      <h3>Rodrigo Guzman</h3>
+      <p>
+        Rodrigo is a web development guru with expertise in Python and Django.
+        Before Leasely, he ran a web development consulting shop. Rodrigo
+        attended Northwestern University as a physics Ph.D student.
+      </p>
+    </div>
+    <div class="span-7 last">
+      <h3>Walter Chen</h3>
+      <p>
+        Walter is an attorney. He practiced law at Jenner &amp; Block in New
+        York City and served as a law clerk on the U.S. Court of Appeals for the
+        Sixth Circuit for the Honorable Cornelia G. Kennedy. He studied computer
+        science and mathematics at Cornell University.
+      </p>
+    </div>
+{% endblock %}
+

@@ -1,0 +1,23 @@
+{% extends "dashboard/base.html" %}
+{% block header_bar %}
+  <h1>Applicant Dashboard</h1>
+{% endblock %}
+{% block main %}
+  <h2>To get started, follow these easy steps:</h2>
+
+  <div class="{% if app_doc_list %}completed{% endif %}"><h3>Step 1: Fill out a rental application.</h3></div>
+
+  <h3>Step 2: Sit back, and <a href="{% url applications_index %}">watch the offers roll in</a>.</h3>
+  {% if app_doc_list %}
+    <hr />
+    <h2>Applications</h2>
+  
+    <p>Here are your most recent applications.</p>
+    {% with app_doc_list|slice:":5" as app_doc_list %}
+      {% include "applications/application_list.html" %}
+    {% endwith %}
+    <p><a href="{% url applications_index %}">See all &rarr;</a></p>
+  {% else %}
+    <!-- <h3>No applications found.</h3> -->
+  {% endif %}
+{% endblock %}

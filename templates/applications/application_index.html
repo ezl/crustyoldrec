@@ -1,0 +1,34 @@
+{% extends "applications/base.html" %}
+{% block header_bar %}
+  <h1>Applications</h1>
+{% endblock %}
+{% block main %}
+
+    {% if app_doc_list %}
+        {% if user_profile.is_broker %}
+            <h3>Here are the applications you've received.</h3>
+        {% else %}
+            <h3>Here are the applications you've submitted.</h3>
+        {% endif %}
+        {% include "applications/application_list.html" %}
+        <p><a href="{% url dashboard %}">&larr; Dashboard</a></p>
+    {% else %}
+        {% if user_profile.is_broker %}
+            <div class="span-10 last">
+                <h2>Give out your unique web address.</h2>
+                <h3>Make it dead simple for tenants to apply to your rental online.  Put the unique web address for your rental
+                    in your online listing, e-mail it to tenants, and print it on the top of paper applications.</h3>
+                <p><a href="#" class="button"><span class="show-button">Show rental</span></a></p>
+            </div>
+                
+        {% else %}
+            <div class="span-10 last">
+                <h2>Find a rental and apply to it.</h2>
+                <h3>Once you fill out one application, we fill out the rest of your applications for you.
+                    When a decision is made on your application, you'll be notified instantaneously on your dashboard.</h3>
+                <p><a href="{% url applications_start %}" class="button"><span class="find-button">Find rental</span></a></p>
+            </div>
+        {% endif %}
+    {% endif %}
+
+{% endblock %}

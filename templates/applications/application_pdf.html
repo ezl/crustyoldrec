@@ -1,0 +1,6 @@
+<p class="large">This is a preview of what the printable form looks like to a prospective tenant.</p>
+<h1>Application for {% firstof app_doc.rental.unit rental.unit %}</h1>
+{% if application_url %}
+  <h2>To fill out this application online, go to {{ application_url }}</h2>
+{% endif %}
+{% include "applications/application_fields.html" %}

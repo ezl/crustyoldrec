@@ -1,0 +1,21 @@
+{% extends "rentals/base.html" %}
+{% block header_bar %}
+  <h1>Rentals</h1>
+{% endblock %}
+{% block main %}
+  {% if rental_list %}
+    <h3>Here are the rentals you've created.</h3>
+    <p><a href="{% url rentals_create %}" class="button"><span class="add-button">Add a rental</span></a></p>
+    {% include "rentals/rental_list.html" %}
+    <p><a href="{% url dashboard %}">&larr; Dashboard</a></p>
+    
+  {% else %}
+    <div class="span-10 last">
+        <h2>Add a rental and start taking applications for it.</h2>
+        <h3>We'll give you a unique web address to an application for that rental.  
+            Put that unique web address in your online rental listing, email it to an open house attendee, or print it out at the top of a paper application form.</h3>
+        <h3>Watch the applications come rolling in.</h3>
+        <p><a href="{% url rentals_create %}" class="button"><span class="add-button">Add a rental</span></a></p>
+    </div>
+  {% endif %}
+{% endblock %}

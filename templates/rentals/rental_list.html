@@ -1,0 +1,35 @@
+<div id="rentallist">
+  <div class="rowheader">
+    <div class="span-8">Rental</div>
+    <div class="span-4">Lease Start Date</div>
+    <div class="span-6">Unique Web Address</div>
+    <div class="span-6 last">Action</div>
+  </div>
+  {% for rental in rental_list %}
+    {# TODO: there may be several brokers associated with each unit, they should be grouped accordingly #}
+    <div class="{% cycle "row1" "row2" %}">
+      <div class="span-8">{{ rental.unit }}</div>
+      <div class="span-4">{% if rental.start_date %}{{ rental.start_date }}{% else %}Not specified{% endif %}</div>
+      <div class="span-6">
+        <a href="http://{{ site }}{% url application url_hash=rental.url_hash %}">http://{{ site }}{% url application url_hash=rental.url_hash %}</a>
+        <object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" title="Copy to clipboard" width="110" height="14"> 
+            <param name="movie" value="{{MEDIA_URL}}flash/clippy.swf"> 
+            <param name="allowScriptAccess" value="always"> 
+            <param name="quality" value="high"> 
+            <param name="scale" value="noscale"> 
+            <param name="FlashVars" value="text=http://{{ site }}{% url application url_hash=rental.url_hash %}"> 
+            <param name="bgcolor" value="{% cycle "#DDEEFF" "#EEEEEE" %}"> 
+            <embed src="{{MEDIA_URL}}flash/clippy.swf" width="110" height="14" name="clippy" quality="high" allowscriptaccess="always" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="text=http://{{ site }}{% url application url_hash=rental.url_hash %}" bgcolor="{% cycle "#DDEEFF" "#EEEEEE" %}"> 
+        </object>         
+      </div>
+      <div class="span-6 last">
+        {% if user_profile.is_broker or user_profile.is_landlord %}
+            <a href="{% url rentals_update rental_id=rental.id %}">Edit</a>
+          {% if rental.is_editable %}
+            <a href="{% url rentals_delete rental_id=rental.id %}">Delete</a>
+          {% endif %}
+        {% endif %}
+      </div>
+    </div>
+  {% endfor %}
+</div>

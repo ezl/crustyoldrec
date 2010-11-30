@@ -1,0 +1,64 @@
+{% extends "rentals/base.html" %}
+{% block extra_head %}
+
+
+    <!-- page specific scripts -->
+    <script type="text/javascript" charset="utf-8">
+        $(function()
+        {
+            $("#id_rental-start_date").datepicker();
+        });
+    </script>
+
+{% endblock %}
+{% block header_bar %}
+  <h1>Add a Rental</h1>
+{% endblock %}
+{% block main %}
+
+  <form action="" method="post">{% csrf_token %}
+    <div class="form-container">
+      <h3>Make an online application for your rental by adding a rental below.</h3>
+      <fieldset>
+      {% if rental and not rental.is_editable %}
+        <legend>Rental Address</legend>
+        <h4>{{ rental.unit }}</h4>
+        <div class="small">(The address of your rental is no longer editable.)</div>
+      {% else %}
+          <legend>Enter the rental's address</legend>
+          {% for ufield in unit_form %}
+            <div class="label_field-container {% if ufield.errors %}error{% endif %}">
+              <ul class="errorlist">
+                {% for error in ufield.errors %} <li>{{ error}} </li> {% endfor %}
+              </ul>
+              {{ ufield.label_tag}}<br>
+              {{ ufield }}<br>
+              {% if ufield.help_text %}
+                <div class="small">{{ ufield.help_text }}</div>
+              {% endif %}
+            </div>
+          {% endfor %}
+      {% endif %}
+      
+      </fieldset>
+      <fieldset>
+      {% for rfield in rental_form %}
+        {% if rfield.name == "start_date" %}
+            <legend>Enter the lease's move-in date</legend>
+        {% endif %}
+        <div class="label_field-container {% if rfield.errors %}error{% endif %}">
+          <ul class="errorlist">
+            {% for error in rfield.errors %} <li>{{ error}} </li> {% endfor %}
+          </ul>
+          {{ rfield.label_tag}}<br>
+          {{ rfield }} <br>
+          {% if rfield.help_text %}
+            <div class="small">({{rfield.help_text}})</div>
+          {% endif %}
+        </div>
+      {% endfor %}
+      </fieldset>
+      <p><input type="submit" value="Create the Application" /></p>
+    </div>
+  </form>
+{% endblock %}

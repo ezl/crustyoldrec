@@ -1,0 +1,29 @@
+{% extends "applications/base.html" %}
+{% block header_bar %}
+  <h1>Find</h1>
+{% endblock %}
+{% block main %}
+  <form action="" method="post">{% csrf_token %}
+    <div class="form-container">
+        {% if url_hash %}
+            <h3>We can't seem to find the rental you are applying for. Find your unit below.</h3>
+        {% else %}
+          <h3>Choose the rental and start the application.</h3>
+        {% endif %}
+        
+        {% for field in form %}
+            <div class="label_field-container {% if field.errors %}error{% endif %}">
+              <ul class="errorlist">
+                {% for error in field.errors %} <li>{{ error}} </li> {% endfor %}
+              </ul>
+              {{ field.label_tag}}<br>
+              {{ field }} <br>
+              {% if field.help_text %}
+                <div class="small">({{field.help_text}})</div>
+              {% endif %}
+            </div>
+        {% endfor %}
+        <p><input type="submit" value="Continue &rarr;"></p>
+    </div>
+  </form>
+{% endblock %}
