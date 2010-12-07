@@ -96,8 +96,6 @@ def match_spread_legs(oc, ne, matched_oc_legs=[], matched_ne_legs=[]):
             potential_ne_legs.append([i, ne_net_traded, ne_net_cash])
 
     # now we have all the matching legs.  see if the net prices match
-    # print sum([i[2] for i in potential_oc_legs])
-    # print sum([i[2] for i in potential_ne_legs])
     if sum([i[2] for i in potential_oc_legs]) == sum([i[2] for i in potential_ne_legs]):
         # woohoo, cash matches! These are spread legs!
         # lets take them out of the system.
