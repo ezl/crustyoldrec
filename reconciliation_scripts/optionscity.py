@@ -21,20 +21,6 @@ conn = mysql.connect(host=host,
 
 cursor = conn.cursor()
 
-# transactions since some arbitrary time
-t__________s = """SELECT TRADES_SUB.side,
-                         TRADES_SUB.tradedQuantity,
-                         INSTRUMENTS.displaySymbol,
-                         TRADES_SUB.tradedPrice
-                  FROM INSTRUMENTS,
-                       TRADES,
-                       TRADES_SUB
-                  WHERE TRADES_SUB.tradePersistId=TRADES.persistID AND
-                        TRADES.tradeDateTime >"%s" AND
-                        INSTRUMENTS.persistID=TRADES_SUB.instrumentPersistId
-                  ORDER BY TRADES_SUB.tradePersistId;
-        """ % "2010-10-20 13:00"
-
 # transactions since last commit
 commits_ago = 1
 transactions = """SELECT TRADES_SUB.side,
