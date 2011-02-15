@@ -7,7 +7,7 @@ opener = urllib2.build_opener(urllib2.HTTPCookieProcessor())
 urllib2.install_opener(opener)
 
 userid = "ERICLIU"
-password = "Ctc12345"
+password = "Newedge1"
 
 credentials = urllib.urlencode(dict(userid=userid, password=password))
 

@@ -1,6 +1,12 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.views.generic.simple import direct_to_template
+
+from reconciliation_scripts.optionscity import positions as OC_positions
+from reconciliation_scripts.optionscity import transactions as OC_trades
+from reconciliation_scripts.newedge import positions as NE_positions
+from reconciliation_scripts.newedge import transactions as NE_trades
+
 from reconciliation_scripts import match  # import (
                                           # OC_positions_full, NE_positions_full,
                                           # position_exceptions,
