@@ -57,3 +57,9 @@ transactions = parse_transactions(rows)
 cursor.execute(positions)
 rows = cursor.fetchall()
 positions = parse_positions(rows)
+
+if __name__ == "__main__":
+    print "positions"
+    print transactions[0]
+    print "positions"
+    print positions[0]

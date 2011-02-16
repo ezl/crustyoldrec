@@ -55,3 +55,10 @@ t = retrieve_transactions()
 
 positions = parse_positions(p)
 transactions = parse_transactions(t)
+
+if __name__ == "__main__":
+    print "positions"
+    print positions[0]
+    print "transactions"
+    print transactions[0]
+
